@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("das108api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc3edccae41a372925ca125e02e0edb416d92775")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79dcbf0dcb5516fc251daebc88f056dfc5fd0ada")]
 [assembly: System.Reflection.AssemblyProductAttribute("das108api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("das108api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
