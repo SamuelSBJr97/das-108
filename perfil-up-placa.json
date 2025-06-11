@@ -1,0 +1,33 @@
+{
+    "empresaId": "82",
+    "alteracoes": [
+        {
+            "VeiculoId": 280657,
+            "Alteracoes": {
+                "perfil_0": true,
+                "perfil_10": false
+            }
+        },
+        {
+            "VeiculoId": 280702,
+            "Alteracoes": {
+                "perfil_0": true,
+                "perfil_10": false
+            }
+        },
+        {
+            "VeiculoId": 280714,
+            "Alteracoes": {
+                "perfil_0": true,
+                "perfil_10": false
+            }
+        },
+        {
+            "VeiculoId": 13123,
+            "Alteracoes": {
+                "perfil_0": true,
+                "perfil_10": false
+            }
+        }
+    ]
+}

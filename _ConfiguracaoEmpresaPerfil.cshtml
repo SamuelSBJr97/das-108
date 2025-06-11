@@ -1,0 +1,149 @@
+﻿
+@section head {
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="~/Plugins/bootstrap-select/css/bootstrap-select.min.css">
+
+    <!-- Radio button icheck plugin -->
+    <link rel="stylesheet"
+          href="~/Scripts/plugins/icheck/skins/square/blue.css"
+          crossorigin="anonymous" />
+
+    <!-- Spinner CSS-->
+    <link rel="stylesheet"
+          href="~/Content/spinner.css"
+          crossorigin="anonymous" />
+
+    <!-- toastr CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+          integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+          crossorigin="anonymous" />
+}
+
+<style>
+    .associado-checkbox {
+        transform: scale(2);
+    }
+</style>
+
+<div id="container" class="my-3 p-3">
+    <div class="row">
+        <div class="col-md-6 mb-sm-3 align-self-center">
+            <!-- Adicionei a classe align-self-center aqui -->
+            <div class="d-flex gap-1 fw-bold" id="loader-company">
+                <label for="input-company" class="form-label">Empresa</label>
+            </div>
+
+            <div class="input-group">
+                <select id="perfilEmpresaSelect" class="form-control selectpicker" name="perfilEmpresaSelect"
+                        title="Escolha uma empresa..."
+                        data-live-search="true"
+                        data-style="select-custom"
+                        data-style-base="form-control"
+                        data-size="10"
+                        data-live-search-normalize="true"
+                        data-live-search-placeholder="Digite o nome da empresa...">
+
+                    @foreach (var item in ViewBag.Empresas)
+                    {
+                        <option name="companyOptions" value="@item.Id">@item.Apelido</option>
+                    }
+
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="d-flex gap-1 fw-bold" id="">
+                <label for="" class="form-label">Selecionar Perfis</label>
+            </div>
+            <div class="input-group justify-content-end gap-1">
+                <select id="empresaPerfisSelect" class="form-control selectpicker" name="empresaPerfisSelect"
+                        title="Escolha o perfil..."
+                        data-live-search="true"
+                        data-style="select-custom"
+                        data-style-base="form-control"
+                        data-live-search-normalize="true"
+                        multiple
+                        data-count-selected-text=" {0} perfis selecionados"
+                        data-selected-text-format="count > 1"
+                        data-live-search-placeholder="Digite o perfil...">
+                </select>
+
+                <button class="btn btn-primary" type="button" id="btnEmpresaPerfilNovo">Novo</button>
+                <button class="btn btn-warning" type="button" id="btnEmpresaPerfilEditar">Editar</button>
+                <button class="btn btn-danger" type="button" id="btnEmpresaPerfilExcluir">Excluir</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            &nbsp;
+        </div>
+        <div class="col-md-6" id="divPerfilEmpresaNovoEditar" style="display: none">
+            <div class="input-group justify-content-end gap-1">
+                <input class="form-control" type="text" id="empresaPerfilNomeInput" placeholder="Nome do perfil" disabled />
+                <button class="btn btn-warning" type="button" id="btnEmpresaPerfilCancelar" disabled>Cancelar</button>
+                <button class="btn btn-primary" type="button" id="btnEmpresaPerfilSalvar" disabled>Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rótulo explicativo para a atribuição de placas nos perfis -->
+    <div class="row mt-3">
+        <div class="d-flex gap-1 fw-bold" id="loader-company">
+            <label for="input-company" class="form-label">Associar placas aos perfis</label>
+        </div>
+        <div class="col-6">
+            <button type="button" class="btn btn-primary perfilEmpresaCarregarPlacas" data-toggle="modal">
+                Carregar placas
+            </button>
+        </div>
+        <div class="col-6 d-flex justify-content-end gap-1">
+            <button type="button" class="btn btn-warning perfilEmpresaSalvarPlacas" data-toggle="modal" id="perfilEmpresaCancelarPlacas">
+                Cancelar
+            </button>
+            <button type="button" class="btn btn-primary perfilEmpresaSalvarPlacas" data-toggle="modal" id="perfilEmpresaSalvarPlacas">
+                Salvar placas nos perfis
+            </button>
+        </div>
+        <!-- Tabela de placas por perfil -->
+        <div class="table-responsive mt-3">
+            <table id="empresaPerfilPlacas" class="table table-striped table-hover c-CorLetraConfiguracao-Custom" style="width: 100%" cellspacing="0">
+                <thead class="bg-DashBoard-custom text-light">
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="~/Plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js" integrity="sha256-dOvlmZEDY4iFbZBwD8WWLNMbYhevyx6lzTpfVdo0asA=" crossorigin="anonymous"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="~/Plugins/bootstrap-select/js/i18n/defaults-pt_BR.min.js"></script>
+
+    <!-- Radio button icheck script -->
+    <script src="~/Scripts/plugins/icheck/icheck.js"
+            crossorigin="anonymous">
+    </script>
+
+    <!-- toastr -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+            crossorigin="anonymous">
+    </script>
+
+    <!-- dataTable -->
+    <script src="~/Plugins/datatable/datatables.min.js"></script>
+    <script src="~/Plugins/datatable/datetime-moment.js"></script>
+
+    <script src="https://unpkg.com/imask"></script>
+
+    <script type="module" src="@Url.Content("~/Scripts/View/Configuracao/cadastrarEmpresaPerfil/index.js")"></script>
+}
+
